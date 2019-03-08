@@ -1,0 +1,10 @@
+node_modules
+test
+docs
+Dockerfile
+Makefile
+docker-compose.yml
+README.md
+.gitlab-ci.yml
+.gitignore
+.git

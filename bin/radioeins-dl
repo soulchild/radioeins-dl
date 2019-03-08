@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+const ProgressBar = require('progress');
+const slugify = require('slugify');
+const RadioEins = require('../index.js');
+
+const showUrl = process.argv[2];
+if (!showUrl) {
+  console.error('Missing or invalid show URL');
+  process.exit(1);
+}
+
+let progressBar;
+
+const radioeins = new RadioEins(showUrl);
+
+radioeins
+  .getInfo()
+  .then(info => {
+    const stream = info.streams[0];
+    console.log(`Found show: ${info.title}`);
+    stream.on('response', response => {
+      progressBar = new ProgressBar('Downloading [:bar] :percent :etas', {
+        total: response.bytesTotal,
+        width: 32
+      });
+    });
+    stream.on('progress', progress => progressBar.tick(progress.chunkBytes));
+    const filename = slugify(info.title.toLowerCase());
+    stream.download(`${filename}.mp3`);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
