@@ -22,6 +22,8 @@ radioeins-dl <url-to-radio-show>
 
 ### Example
 
+Download current Jazzanova Kaleidoskop episode:
+
 ```bash
 radioeins-dl https://www.radioeins.de/programm/sendungen/kaleidoskop/
 ```
