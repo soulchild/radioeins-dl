@@ -4,7 +4,8 @@
   "description": "Download shows from radioeins",
   "bin": "./bin/radioeins-dl",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.js"
   },
   "repository": "https://www.github.com/soulchild/radioeins-dl",
   "author": "Tobi Kremer",
